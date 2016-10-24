@@ -1,3 +1,5 @@
 #   First we are going to import a gui... 
 #   we have chosen tkinter so we are going to import
-from tkinter import *
+import tkinter as tk
+
+
