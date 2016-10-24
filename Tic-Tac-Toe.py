@@ -35,3 +35,15 @@ class Gsme(tk.tk):
  def show_frame(self, page_name):
     frame = self.frames[page_name]
     frame.tkraise()
+
+#this is the menu
+class Menu(tk.Frame):
+  
+  def __init__(self, parent, controller):
+    tk.frame.__init__(self, parent)
+    self.container = controller
+#this is a title
+    label = tk.Label(self, text="Tic-Tac-Toe", font=TITLE_FONT).pack(side="bottom", fill="x", pady=10)
+# these are buttons, the lambda comman allows you to look for functions                                     
+    btn1 = tk.Button(self, text="Multiplayer", command=lambda: controller.show_frame("PageTwo")).pack(side="top")
+    btn2 = tk.Button(self, text="Computer", command=lambda: controller.show_frame("PageOne")).pack(side="top")
