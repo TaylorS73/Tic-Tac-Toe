@@ -35,3 +35,18 @@ class app(tk.tk):
  def show_frame(self, page_name):
     frame = self.frames[page_name]
     frame.tkraise()
+
+                                    
+                                    
+# This code will add the background image
+from PIL import ImageTk,Image
+root=Tk()
+canvasWidth=600
+canvasHeight=400
+self.canvas=Canvas(root,width=canvasWidth,height=canvasHeight)
+backgroundImage=root.PhotoImage("D:\Documents\Background.png")
+backgroundLabel=root.Label(parent,image=backgroundImage)
+backgroundLabel.place(x=0,y=0,relWidth=1,relHeight=1)
+self.canvas.pack()
+root.mainloop()
+#http://stackoverflow.com/questions/13637028/adding-a-background-image-in-python
