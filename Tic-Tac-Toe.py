@@ -59,14 +59,57 @@ class PageOne(tk.Frame):
         label = tk.Label(self, text="Playing Computer", font=TITLE_FONT, bg="black", fg="white").grid(column=1, row=0, columnspan=3) 
         button = tk.Button(self, text="Menu", bg="black", fg="white", command=lambda: controller.show_frame("StartPage")).grid(column=2, row=5) 
 
-        button1 = tk.Button(self, height="10", width="20").grid(column=1, row=1) 
-        button2 = tk.Button(self, bg="yellow", height="10", width="20").grid(column=2, row=1) 
-        button3 = tk.Button(self, bg="black", height="10", width="20").grid(column=3, row=1) 
-        button4 = tk.Button(self, bg="white", height="10", width="20").grid(column=1, row=2) 
-        button5 = tk.Button(self, bg="orange", height="10", width="20").grid(column=2, row=2) 
-        button6 = tk.Button(self, bg="pink", height="10", width="20").grid(column=3, row=2) 
-        button7 = tk.Button(self, bg="blue", height="10", width="20").grid(column=1, row=3) 
-        button8 = tk.Button(self, bg="red", height="10", width="20").grid(column=2, row=3) 
+  def tictactoe(buttons):
+    
+      global bclick
+    
+      if buttons ["text"] == " "and bclick == True:
+          buttons["text"] = "X"
+          bclick = False
+      elif buttons ["text"] == " "and bclick == False:
+         buttons["text"] = "O"
+         bclick = True
+        
+      elif(button1["text"] == "X" and button2["text"] == "X" and button3["text"] == "X" or
+           button1["text"] == "X" and button4["text"] == "X" and button7["text"] == "X" or
+           button1["text"] == "X" and button5["text"] == "X" and button9["text"] == "X" or
+           button3["text"] == "X" and button4["text"] == "X" and button5["text"] == "X" or
+           button7["text"] == "X" and button8["text"] == "X" and button9["text"] == "X" or
+           button2["text"] == "X" and button5["text"] == "X" and button8["text"] == "X" or
+           button3["text"] == "X" and button6["text"] == "X" and button9["text"] == "X" or
+           button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X" ):
+          messagebox.showinfo("Winner is X", "Player X won the game!")
+
+      else:
+          (button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
+           button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O" or
+           button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O" or
+           button3["text"] == "O" and button4["text"] == "O" and button5["text"] == "O" or
+           button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O" or
+           button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O" or
+           button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O" or
+           button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" )
+          messagebox.showinfo("Winner is O", "Player O won the game!")
+
+  buttons=StringVar()
+
+  button1=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button1)).grid(row=1,column=0,sticky=S+N+E+W)
+
+  button2=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button2)).grid(row=1,column=1,sticky=S+N+E+W)
+
+  button3=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button3)).grid(row=1,column=2,sticky=S+N+E+W)
+
+  button4=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button4)).grid(row=2,column=0,sticky=S+N+E+W)
+
+  button5=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button5)).grid(row=2,column=1,sticky=S+N+E+W)
+
+  button6=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button6)).grid(row=2,column=2,sticky=S+N+E+W)
+
+  button7=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button7)).grid(row=3,column=0,sticky=S+N+E+W)
+
+  button8=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button8)).grid(row=3,column=1,sticky=S+N+E+W)
+
+  button9=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button9)).grid(row=3,column=2,sticky=S+N+E+W)
 
 #multiplayer page
 class PageTwo(tk.Frame):
@@ -76,16 +119,58 @@ class PageTwo(tk.Frame):
         self.controller = controller
         label = tk.Label(self, text="Playing Multiplayer", font=TITLE_FONT, bg="black", fg="white").grid(column=1, row=0, columnspan=3) 
         button = tk.Button(self, text="Menu", bg="black", fg="white", command=lambda: controller.show_frame("StartPage")).grid(column=2, row=5) 
+
+  def tictactoe(buttons):
+    
+      global bclick
+    
+      if buttons ["text"] == " "and bclick == True:
+          buttons["text"] = "X"
+          bclick = False
+      elif buttons ["text"] == " "and bclick == False:
+         buttons["text"] = "O"
+         bclick = True
         
-        button1 = tk.Button(self, height="10", width="20").grid(column=1, row=1) 
-        button2 = tk.Button(self, bg="yellow", height="10", width="20").grid(column=2, row=1) 
-        button3 = tk.Button(self, bg="black", height="10", width="20").grid(column=3, row=1) 
-        button4 = tk.Button(self, bg="white", height="10", width="20").grid(column=1, row=2) 
-        button5 = tk.Button(self, bg="orange", height="10", width="20").grid(column=2, row=2) 
-        button6 = tk.Button(self, bg="pink", height="10", width="20").grid(column=3, row=2) 
-        button7 = tk.Button(self, bg="blue", height="10", width="20").grid(column=1, row=3) 
-        button8 = tk.Button(self, bg="red", height="10", width="20").grid(column=2, row=3) 
-        button9 = tk.Button(self, bg="purple", height="10", width="20").grid(column=3, row=3)
+      elif(button1["text"] == "X" and button2["text"] == "X" and button3["text"] == "X" or
+           button1["text"] == "X" and button4["text"] == "X" and button7["text"] == "X" or
+           button1["text"] == "X" and button5["text"] == "X" and button9["text"] == "X" or
+           button3["text"] == "X" and button4["text"] == "X" and button5["text"] == "X" or
+           button7["text"] == "X" and button8["text"] == "X" and button9["text"] == "X" or
+           button2["text"] == "X" and button5["text"] == "X" and button8["text"] == "X" or
+           button3["text"] == "X" and button6["text"] == "X" and button9["text"] == "X" or
+           button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X" ):
+          messagebox.showinfo("Winner is X", "Player X won the game!")
+
+      else:
+          (button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
+           button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O" or
+           button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O" or
+           button3["text"] == "O" and button4["text"] == "O" and button5["text"] == "O" or
+           button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O" or
+           button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O" or
+           button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O" or
+           button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" )
+          messagebox.showinfo("Winner is O", "Player O won the game!")
+
+  buttons=StringVar()
+
+  button1=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button1)).grid(row=1,column=0,sticky=S+N+E+W)
+
+  button2=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button2)).grid(row=1,column=1,sticky=S+N+E+W)
+
+  button3=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button3)).grid(row=1,column=2,sticky=S+N+E+W)
+
+  button4=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button4)).grid(row=2,column=0,sticky=S+N+E+W)
+
+  button5=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button5)).grid(row=2,column=1,sticky=S+N+E+W)
+
+  button6=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button6)).grid(row=2,column=2,sticky=S+N+E+W)
+
+  button7=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button7)).grid(row=3,column=0,sticky=S+N+E+W)
+
+  button8=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button8)).grid(row=3,column=1,sticky=S+N+E+W)
+
+  button9=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button9)).grid(row=3,column=2,sticky=S+N+E+W)        
 
 if __name__ == "__main__":
     app = SampleApp()
