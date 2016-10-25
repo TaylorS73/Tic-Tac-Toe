@@ -14,24 +14,26 @@ class app(tk.tk):
   def __init__(self, *args, **kwargs):
     tk.Tk.__init(self, *args, **kwargs)
     
-# container is a layout manager 
-    container = tk.Frame(self).pack(side=top", fill="both", expand=true)
-                                    
-# grid_rowconfigure/columnconfigure configures the row/column
-    container.grid_rowconfigure(0, weight=1)
-    container.grid_columnconfigure(0, weight=1)
-    
-    self.frames = {}
-#this allows you to select different frames to bring to the top
-    for F in (Menu,Pageone, Pagetwo):
-        page_name = F.__name__
-        frame = F(parent=container, cpntroller=self)
-        self.frames[page_name]
+# container is a layout manager
+# grid_rowconfigure/columnconfigure configures the row/column 
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
-        frame.grid(row=0, column=0, sticky="nsew")
+#this allows you to select different frames to bring to the top
+        self.frames = {}
+        for F in (Menu, PageOne, PageTwo):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
+
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame("StartPage")
 
 #defining what show frame is 
 #this raises a frame to the top
- def show_frame(self, page_name):
-    frame = self.frames[page_name]
-    frame.tkraise()
+    def show_frame(self, page_name):
+        frame = self.frames[page_name]
+        frame.tkraise()
