@@ -5,6 +5,7 @@ root.title("Tic Tac Toe")
 
 bclick = True
 
+def validation(
 
 def tictactoe(buttons):
     
@@ -27,15 +28,14 @@ def tictactoe(buttons):
          button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X" ):
         messagebox.showinfo("Winner is X", "Player X won the game!")
 
-    else:
-        (button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
+    elif(button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
          button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O" or
          button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O" or
          button3["text"] == "O" and button4["text"] == "O" and button5["text"] == "O" or
          button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O" or
          button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O" or
          button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O" or
-         button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" )
+         button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" ):
         messagebox.showinfo("Winner is O", "Player O won the game!")
 
 buttons=StringVar()
@@ -48,7 +48,7 @@ button2.grid(row=1,column=1,sticky=S+N+E+W)
 
 button3=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button3))
 button3.grid(row=1,column=2,sticky=S+N+E+W)
-
+    
 button4=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button4))
 button4.grid(row=2,column=0,sticky=S+N+E+W)
 
@@ -66,6 +66,5 @@ button8.grid(row=3,column=1,sticky=S+N+E+W)
 
 button9=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button9))
 button9.grid(row=3,column=2,sticky=S+N+E+W)
-
 
 root.mainloop()
