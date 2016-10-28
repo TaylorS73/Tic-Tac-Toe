@@ -1,1 +1,1 @@
-# This file includes the background images for the Tic-Tac-Toe game
+# This folder includes the background images for the Tic-Tac-Toe game
