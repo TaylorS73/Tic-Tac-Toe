@@ -50,3 +50,15 @@ backgroundLabel.place(x=0,y=0,relWidth=1,relHeight=1)
 self.canvas.pack()
 root.mainloop()
 #http://stackoverflow.com/questions/13637028/adding-a-background-image-in-python
+                                    
+# This code will make the background images loop
+import PIL
+import Image
+import glob
+
+for filename in glob.glob("*.tif"):
+    im=Image.open(filename)
+    box=(50, 50, 200, 200)
+    im_crop=im.crop(box)
+    im_crop.show()
+#  http://stackoverflow.com/questions/6997419/how-to-create-a-loop-to-read-several-images-in-a-python-script                                 
