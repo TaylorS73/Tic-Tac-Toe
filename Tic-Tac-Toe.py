@@ -1,180 +1,345 @@
-#   First we are going to import a gui... 
-#   we have chosen tkinter so we are going to import
 import tkinter as tk
+from random import randint
 
-#defines a font to use 
-TITLE_FONT = ("", 32, "bold")
+TITLE_FONT = ("Helvetica", 18, "bold")
 
-#defining what the game is
-class app(tk.tk):
-  
-# *arg allow you to pass multiple arguments through without knowing exactly how many you want to pass through
-#**kwargs allows you to select a particular argument ( the stars is just an order based system)
-#__init__ function is a constructor  or initializer, and is automatically called when you create a new instance of a class
-  def __init__(self, *args, **kwargs):
-    tk.Tk.__init(self, *args, **kwargs)
-    
-# container is a layout manager
-# grid_rowconfigure/columnconfigure configures the row/column 
+class tictactoe_game(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        path = "bg.jpg"
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-#this allows you to select different frames to bring to the top
         self.frames = {}
-        for F in (StatPage, PageOne, PageTwo):
+        for F in (menu, singleplayer, multiplayer):# input frame name here
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
 
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("StartPage")
+        self.show_frame("menu")
 
-#defining what show frame is 
-#this raises a frame to the top
     def show_frame(self, page_name):
+        '''Show a frame for the given page name'''
         frame = self.frames[page_name]
         frame.tkraise()
 
-#this is the menu
-class StartPage(tk.Frame):
+class menu(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self, parent, bg="white")
         self.controller = controller
-        label = tk.Label(self, text="Tic-Tac-Toe", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-
-        button1 = tk.Button(self, text="Computer", bg="black", fg="white", command=lambda: controller.show_frame("PageOne")).pack()
-        button2 = tk.Button(self, text="Multiplayer", bg="black", fg="white", command=lambda: controller.show_frame("PageTwo")).pack()
-
-#computer page where you can play against computer
-class PageOne(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="black")
-        self.controller = controller
-        label = tk.Label(self, text="Playing Computer", font=TITLE_FONT, bg="black", fg="white").grid(column=1, row=0, columnspan=3) 
-        button = tk.Button(self, text="Menu", bg="black", fg="white", command=lambda: controller.show_frame("StartPage")).grid(column=2, row=5) 
-
-  def tictactoe(buttons):
-    
-      global bclick
-    
-      if buttons ["text"] == " "and bclick == True:
-          buttons["text"] = "X"
-          bclick = False
-      elif buttons ["text"] == " "and bclick == False:
-         buttons["text"] = "O"
-         bclick = True
+        label = tk.Label(self, text="Tic-Tac-Toe", font=TITLE_FONT, bg="white").pack(fill="both", expand=True)
+        label = tk.Label(self, text="Created by", bg="white").pack()
+        label = tk.Label(self, text="Kyle Speke + Taylor Southor", bg="white").pack()
+        label = tk.Label(self, text="Harry Hudson + Ayyub Lindroos", bg="white").pack()
         
-      elif(button1["text"] == "X" and button2["text"] == "X" and button3["text"] == "X" or
-           button1["text"] == "X" and button4["text"] == "X" and button7["text"] == "X" or
-           button1["text"] == "X" and button5["text"] == "X" and button9["text"] == "X" or
-           button3["text"] == "X" and button4["text"] == "X" and button5["text"] == "X" or
-           button7["text"] == "X" and button8["text"] == "X" and button9["text"] == "X" or
-           button2["text"] == "X" and button5["text"] == "X" and button8["text"] == "X" or
-           button3["text"] == "X" and button6["text"] == "X" and button9["text"] == "X" or
-           button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X" ):
-          messagebox.showinfo("Winner is X", "Player X won the game!")
+        button1 = tk.Button(self, text="Player vs Computer", bg="white", command=lambda: controller.show_frame("singleplayer")).pack(fill="both", expand=True, side="left")
+        button2 = tk.Button(self, text="Player vs Player", bg="white", command=lambda: controller.show_frame("multiplayer")).pack(fill="both", expand=True, side="right")
 
-      else:
-          (button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
-           button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O" or
-           button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O" or
-           button3["text"] == "O" and button4["text"] == "O" and button5["text"] == "O" or
-           button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O" or
-           button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O" or
-           button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O" or
-           button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" )
-          messagebox.showinfo("Winner is O", "Player O won the game!")
-
-  buttons=StringVar()
-
-  button1=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button1)).grid(row=1,column=0,sticky=S+N+E+W)
-
-  button2=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button2)).grid(row=1,column=1,sticky=S+N+E+W)
-
-  button3=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button3)).grid(row=1,column=2,sticky=S+N+E+W)
-
-  button4=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button4)).grid(row=2,column=0,sticky=S+N+E+W)
-
-  button5=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button5)).grid(row=2,column=1,sticky=S+N+E+W)
-
-  button6=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button6)).grid(row=2,column=2,sticky=S+N+E+W)
-
-  button7=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button7)).grid(row=3,column=0,sticky=S+N+E+W)
-
-  button8=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button8)).grid(row=3,column=1,sticky=S+N+E+W)
-
-  button9=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button9)).grid(row=3,column=2,sticky=S+N+E+W)
-
-#multiplayer page
-class PageTwo(tk.Frame):
+class singleplayer (tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, bg="black")
+        tk.Frame.__init__(self, parent, bg="white")
         self.controller = controller
-        label = tk.Label(self, text="Playing Multiplayer", font=TITLE_FONT, bg="black", fg="white").grid(column=1, row=0, columnspan=3) 
-        button = tk.Button(self, text="Menu", bg="black", fg="white", command=lambda: controller.show_frame("StartPage")).grid(column=2, row=5) 
+        label = tk.Label(self, text="Playing Computer", font=TITLE_FONT, bg="white").grid(row=0, column=0, columnspan=3)
+        self._board()
+        button1 = tk.Button(self, text="Menu", bg="white", command=lambda: controller.show_frame("menu")).grid(row=2, column=0)
+        button2 = tk.Button(self, text="Reset", bg="white", command=self.reset).grid(row=2, column=1) 
 
-  def tictactoe(buttons):
+    def reset (self):
+        self.board.delete("all")
+        self.board.unbind("<ButtonPress-1>")
+        self.j=True
+        self._board()
+
+    def _board(self):
+        self.board = tk.Canvas(self, width=300, height=300)
+        self.board.bind("<ButtonPress-1>", self.dgplayer)
+        self.board.grid(row=1, column=0, columnspan=2)   
+        self.board.create_rectangle(0,0,300,300, outline="black", fill="white")
+        self.board.create_rectangle(100,300,200,0, outline="black")
+        self.board.create_rectangle(0,100,300,200, outline="black")
+        self.location=[[0,0,0],[0,0,0],[0,0,0]]
+        self.i=0
+        self.j=False
+
+    def dgplayer(self,event):
+        for k in range(0,300,100):
+            for j in range(0,300,100):
+                if self.i%2==0:
+                    if event.x in range(k,k+100) and event.y in range(j,j+100):
+                        if self.board.find_enclosed(k,j,k+100,j+100)==():
+                            X=(2*k+100)/2
+                            Y=(2*j+100)/2
+                            X1=int(k/100)
+                            Y1=int(j/100)
+                            self.board.create_oval( X+25, Y+25, X-25, Y-25, width=4, outline="black")
+                            self.location[Y1][X1]+=1
+                            self.i+=1
+                            self.check()
+                            self.trigger=False                           
+                else:
+                    self.check()
+                    self.AIcheck()
+                    self.trigger=False
+                    
+    def AIcheck(self):
+        #This is built on the self.check function
+        self.location=[[row[i] for row in self.location] for i in range(3)]
+        #DEFENSE
+        #this is the horizontal checklist    
+        for h in range(0,3): 
+            k=0
+            j=0            
+            if sum(self.location[h])==2:
+                while k <3:
+                    if k==h:
+                        while j <3:
+                            if self.trigger==False:
+                                if self.location[k][j]==0:
+                                    self._cross(j,k)
+                                    break
+                            j+=1
+                    k+=1
+        #this is the vertical checklist
+        for h in range(0,3):
+            k=0
+            j=0
+            if sum(self.location[h])==2:                        
+                while k <3:
+                    if k==h:
+                        while j <3:
+                            if self.trigger==False:
+                                if self.location[k][j]==0:
+                                    self._cross(k,j)
+                                    break
+                            j+=1
+                    k+=1                    
+        #this is the diagonal checklist
+        if self.location[1][1]==1:
+            if self.location[0][0]==1:
+                if self.trigger==False:
+                    if self.location[2][2]==0:
+                        self._cross(2,2)
+            if self.location[0][2]==1:
+                if self.trigger==False:
+                    if self.location[2][0]==0:
+                        self._cross(0,2)
+            if self.location[2][0]==1:
+                if self.trigger==False:
+                    if self.location[0][2]==0:
+                        self._cross(2,0)
+            if self.location[2][2]==1:
+                if self.trigger==False:
+                    if self.location[0][0]==0:
+                        self._cross(0,0)    
+        if self.location[1][1]==0:
+            if self.trigger==False:
+                self._cross(1,1)
+                self.trigger=True
+        else:
+            if self.trigger==False:
+                self.randmove()
+
+    def _cross(self, k, j):
+        # k is the x coords
+        # j is the y coords
+        X=(200*k+100)/2
+        Y=(200*j+100)/2
+        X1=int(k)
+        Y1=int(j)
+        self.board.create_line( X+20, Y+20, X-20, Y-20, width=4, fill="black")
+        self.board.create_line( X-20, Y+20, X+20, Y-20, width=4, fill="black")
+        self.location[Y1][X1]+=9
+        self.check()
+        self.i+=1
+        self.trigger=True
     
-      global bclick
+#computer win
+    def aiwin(self):
+        tk.messagebox.showinfo("Congratulations!", "O won the game!")
+        self.reset()
+#cirlce wins
+    def circle(self):
+       tk.messagebox.showinfo("Congratulations!", "O won the game!")
+       self.reset()
+#crosses win
+    def cross(self):
+       tk.messagebox.showinfo("Congratulations!", "X won the game!")
+       self.reset()
+#draw
+    def draw(self):
+       tk.messagebox.showinfo("Congratulations!", "No One Won!")
+       self.reset()
+#checks who wins     
+    def check(self):
+        #horizontal check
+        #below transposes self.location so that it could use the sum fucntion again
+        self.location=[[row[i] for row in self.location] for i in range(3)]
+        for i in range(0,3):
+            if sum(self.location[i])==27:
+                self.cross()
+            if sum(self.location[i])==3:
+                self.circle()
+        #vertical check
+        #below transposes self.location so that it could use the sum fucntion again
+        self.location=[[row[i] for row in self.location] for i in range(3)]
+        for i in range(0,3):            
+            if sum(self.location[i])==27:
+                self.cross()
+            if sum(self.location[i])==3:
+                self.circle()
+        #check for diagonal wins
+        if self.location[1][1]==9:
+            if self.location[0][0]==self.location[1][1] and self.location[2][2]==self.location[1][1] :
+                self.cross()
+            elif self.location[0][2]==self.location[1][1] and self.location[2][0]==self.location[1][1] :
+                self.cross()
+        if self.location[1][1]==1:
+            if self.location[0][0]==self.location[1][1] and self.location[2][2]==self.location[1][1] :
+                self.circle()
+            elif self.location[0][2]==self.location[1][1] and self.location[2][0]==self.location[1][1] :
+                self.circle()
+        #check for draws
+        if self.j==False:
+            a=0
+            for i in range(0,3):
+                a+= sum(self.location[i])
+            if a==41:
+                self.draw()
+
+    def randmove(self):
+        while True:
+            k=(randint(0,2))
+            j=(randint(0,2))
+            if self.location[j][k]==0:
+                X=(200*k+100)/2
+                Y=(200*j+100)/2
+                self.board.create_line( X+20, Y+20, X-20, Y-20, width=4, fill="black")
+                self.board.create_line( X-20, Y+20, X+20, Y-20, width=4, fill="black")
+                self.location[j][k]+=9
+                self.check()#'43333333333333
+                self.i+=1
+                self.trigger=True
+                break
+            else:
+                k=(randint(0,2))*100
+                j=(randint(0,2))*100
     
-      if buttons ["text"] == " "and bclick == True:
-          buttons["text"] = "X"
-          bclick = False
-      elif buttons ["text"] == " "and bclick == False:
-         buttons["text"] = "O"
-         bclick = True
+#player vs player
+class multiplayer (tk.Frame):
+
+
+#creats a frame and initialize it.
+    def __init__(self, parent, controller):
+        frame=tk.Frame.__init__(self, parent, bg="white")
+        self.controller = controller
+        label = tk.Label(self, text="Playing vs Player", font=TITLE_FONT, bg="white", fg="black").grid(row=0, column=0, columnspan=3)
+        self.canvas()
+        button = tk.Button(self, text="New Game", bg="white", fg="black", command=self.reset).grid(row=3, column=0) 
+        button = tk.Button(self, text="Menu", bg="white", fg="black", command=lambda: controller.show_frame("menu")).grid(row=3, column=1) 
+
+    def reset (self):
+        #resets the board
+        self.board.delete("all")
+        self.board.unbind("<ButtonPress-1>")
+        self.j=True
+        self.canvas()
+
+    def canvas(self):
+        self.board = tk.Canvas(self, width=300, height=300)
+        # allows me to make the canvas clickerble
+        self.board.bind("<ButtonPress-1>", self.sgplayer)
+        self.board.grid(row=2, column=0, columnspan=2)   
+        self.board.create_rectangle(0,0,300,300, outline="black", fill="white")
+        self.board.create_rectangle(100,300,200,0, outline="black")
+        self.board.create_rectangle(0,100,300,200, outline="black")
+        #allows me to store a number in each square which is relevant to ( O, X )
+        self.location=[[0,0,0],[0,0,0],[0,0,0]]
+        self.i=0
+        self.j=False
         
-      elif(button1["text"] == "X" and button2["text"] == "X" and button3["text"] == "X" or
-           button1["text"] == "X" and button4["text"] == "X" and button7["text"] == "X" or
-           button1["text"] == "X" and button5["text"] == "X" and button9["text"] == "X" or
-           button3["text"] == "X" and button4["text"] == "X" and button5["text"] == "X" or
-           button7["text"] == "X" and button8["text"] == "X" and button9["text"] == "X" or
-           button2["text"] == "X" and button5["text"] == "X" and button8["text"] == "X" or
-           button3["text"] == "X" and button6["text"] == "X" and button9["text"] == "X" or
-           button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X" ):
-          messagebox.showinfo("Winner is X", "Player X won the game!")
-
-      else:
-          (button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O" or
-           button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O" or
-           button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O" or
-           button3["text"] == "O" and button4["text"] == "O" and button5["text"] == "O" or
-           button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O" or
-           button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O" or
-           button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O" or
-           button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O" )
-          messagebox.showinfo("Winner is O", "Player O won the game!")
-
-  buttons=StringVar()
-
-  button1=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button1)).grid(row=1,column=0,sticky=S+N+E+W)
-
-  button2=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button2)).grid(row=1,column=1,sticky=S+N+E+W)
-
-  button3=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button3)).grid(row=1,column=2,sticky=S+N+E+W)
-
-  button4=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button4)).grid(row=2,column=0,sticky=S+N+E+W)
-
-  button5=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button5)).grid(row=2,column=1,sticky=S+N+E+W)
-
-  button6=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button6)).grid(row=2,column=2,sticky=S+N+E+W)
-
-  button7=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button7)).grid(row=3,column=0,sticky=S+N+E+W)
-
-  button8=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button8)).grid(row=3,column=1,sticky=S+N+E+W)
-
-  button9=Button(root, text=" ",font=('Arial 30 bold'),height=4,width=8,command=lambda:tictactoe(button9)).grid(row=3,column=2,sticky=S+N+E+W)        
-
+    def sgplayer(self, event):
+        # k is the x coords
+        for k in range(0,300,100):
+            # j is the y coords
+            for j in range(0,300,100):
+                if event.x in range(k,k+100) and event.y in range(j,j+100):
+                    if self.board.find_enclosed(k,j,k+100,j+100)==():
+                        if self.i%2==0:
+                            X=(2*k+100)/2
+                            Y=(2*j+100)/2
+                            X1=int(k/100)
+                            Y1=int(j/100)
+                            #creats the O on the board
+                            self.board.create_oval( X+25, Y+25, X-25, Y-25, width=4, outline="black")
+                            self.location[Y1][X1]+=1
+                            self.i+=1
+                        else:                         
+                            X=(2*k+100)/2
+                            Y=(2*j+100)/2
+                            X1=int(k/100)
+                            Y1=int(j/100)
+                            #creats the X on the board
+                            self.board.create_line( X+20, Y+20, X-20, Y-20, width=4, fill="black")
+                            self.board.create_line( X-20, Y+20, X+20, Y-20, width=4, fill="black")
+                            self.location[Y1][X1]+=9
+                            self.i+=1
+        self.check()  
+#cirlce wins
+    def circle(self):
+       tk.messagebox.showinfo("Congratulations!", "O won the game!")
+       self.reset()
+#crosses win
+    def cross(self):
+       tk.messagebox.showinfo("Congratulations!", "X won the game!")
+       self.reset()
+#draw
+    def draw(self):
+       tk.messagebox.showinfo("Well Done!!", "No One Won!")
+       self.reset()
+#checks who wins     
+    def check(self):
+        #horizontal check
+        #below transposes self.location so that it could use the sum fucntion again
+        self.location=[[row[i] for row in self.location] for i in range(3)]
+        for i in range(0,3):
+            if sum(self.location[i])==27:
+                self.cross()
+            if sum(self.location[i])==3:
+                self.circle()
+        #vertical check
+        #below transposes self.location so that it could use the sum fucntion again
+        self.location=[[row[i] for row in self.location] for i in range(3)]
+        for i in range(0,3):            
+            if sum(self.location[i])==27:
+                self.cross()
+            if sum(self.location[i])==3:
+                self.circle()
+        #check for diagonal wins
+        if self.location[1][1]==9:
+            if self.location[0][0]==self.location[1][1] and self.location[2][2]==self.location[1][1] :
+                self.cross()
+            elif self.location[0][2]==self.location[1][1] and self.location[2][0]==self.location[1][1] :
+                self.cross()
+        if self.location[1][1]==1:
+            if self.location[0][0]==self.location[1][1] and self.location[2][2]==self.location[1][1] :
+                self.circle()
+            elif self.location[0][2]==self.location[1][1] and self.location[2][0]==self.location[1][1] :
+                self.circle()
+        #check for draws
+        if self.j==False:
+            a=0
+            for i in range(0,3):
+                a+= sum(self.location[i])
+            if a==41:
+                self.draw()
+                   
 if __name__ == "__main__":
-    app = SampleApp()
-    app.mainloop()
-
-
-     
+       app = tictactoe_game()
+       app.title("Tic-Tac-Toe")
