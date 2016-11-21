@@ -60,7 +60,7 @@ class singleplayer (tk.Frame):
 
     def _board(self):
         self.board = tk.Canvas(self, width=300, height=300)
-        self.board.bind("<ButtonPress-1>", self.dgplayer)
+        self.board.bind("<ButtonPress-1>")
         self.board.grid(row=1, column=0, columnspan=2)   
         self.board.create_rectangle(0,0,300,300, outline="black", fill="white")
         self.board.create_rectangle(100,300,200,0, outline="black")
