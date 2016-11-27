@@ -64,6 +64,11 @@ drawGrid()
 
 print ('\n' + 'This is how the Tic-Tac-Toe grid looks like (starting from position 1 [top-left] all the way to position 9 [bottom-right]):')
 
+haveWonO = False
+haveWonX = False
+
+counter = 0
+
 while haveWonO == False or haveWonX == False:
 
     if counter > 8:
@@ -83,4 +88,23 @@ while haveWonO == False or haveWonX == False:
             haveWonO = True
             break
         counter += 1
+        
+    if counter > 8:
+        break
+    else: 
+        player2 = gameAI(True)
+        gridDict[player2] = 'X'
+        drawGrid()
+        if ((gridDict[1] == 'X' and gridDict[2] == 'X' and gridDict[3] == 'X')
+        or (gridDict[1] == 'X' and gridDict[4] == 'X' and gridDict[7] == 'X')
+        or (gridDict[1] == 'X' and gridDict[5] == 'X' and gridDict[9] == 'X')
+        or (gridDict[2] == 'X' and gridDict[5] == 'X' and gridDict[8] == 'X')
+        or (gridDict[3] == 'X' and gridDict[6] == 'X' and gridDict[9] == 'X')
+        or (gridDict[3] == 'X' and gridDict[5] == 'X' and gridDict[7] == 'X')
+        or (gridDict[4] == 'X' and gridDict[5] == 'X' and gridDict[6] == 'X')
+        or (gridDict[7] == 'X' and gridDict[8] == 'X' and gridDict[9] == 'X')):
+            haveWonX = True
+            break
+        counter += 1
+
 
