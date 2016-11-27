@@ -28,4 +28,38 @@ def drawGrid():
 
 print ('\n' + 'This is how the Tic-Tac-Toe grid looks like (starting from position 1 [top-left] all the way to position 9 [bottom-right]):')
 
+def gameAI(playerFirst):
+    from random import randint
+    
+    if playerFirst == False:
+        return 5
+    else:   
+        if ((gridDict[2] == 'O' and gridDict[3] == 'O') or (gridDict[4] == 'O' and gridDict[7] == 'O') or (gridDict[5] == 'O' and gridDict[9] == 'O')) and gridDict[1] != 'X':
+            return 1
+        elif ((gridDict[1] == 'O' and gridDict[3] == 'O') or (gridDict[5] == 'O' and gridDict[8] == 'O')) and gridDict[2] != 'X':
+            return 2
+        elif ((gridDict[1] == 'O' and gridDict[2] == 'O') or (gridDict[6] == 'O' and gridDict[9] == 'O') or (gridDict[5] == 'O' and gridDict[7] == 'O')) and gridDict[3] != 'X':
+            return 3
+        elif ((gridDict[1] == 'O' and gridDict[7] == 'O') or (gridDict[5] == 'O' and gridDict[6] == 'O')) and gridDict[4] != 'X':
+            return 4
+        elif ((gridDict[1] == 'O' and gridDict[9] == 'O') or (gridDict[2] == 'O' and gridDict[8] == 'O') or (gridDict[3] == 'O' and gridDict[7] == 'O') or (gridDict[4] == 'O' and gridDict[6] == 'O')) and gridDict[5] != 'X':
+            return 5
+        elif ((gridDict[3] == 'O' and gridDict[9] == 'O') or (gridDict[4] == 'O' and gridDict[5] == 'O')) and gridDict[6] != 'X':
+            return 6
+        elif ((gridDict[1] == 'O' and gridDict[4] == 'O') or (gridDict[3] == 'O' and gridDict[5] == 'O') or (gridDict[8] == 'O' and gridDict[9] == 'O')) and gridDict[7] != 'X':
+            return 7
+        elif ((gridDict[2] == 'O' and gridDict[5] == 'O') or (gridDict[7] == 'O' and gridDict[9] == 'O')) and gridDict[8] != 'X':
+            return 8
+        elif ((gridDict[1] == 'O' and gridDict[5] == 'O') or (gridDict[3] == 'O' and gridDict[6] == 'O') or (gridDict[7] == 'O' and gridDict[8] == 'O')) and gridDict[9] != 'X':
+            return 9
+        
+        while True:
+            randInt = randint(1, 9)
+
+            if gridDict[randInt] == 'O' or gridDict[randInt] == 'X':
+                continue
+            else:
+                gridDict[randInt] = 'X'
+                break
+
 drawGrid()
