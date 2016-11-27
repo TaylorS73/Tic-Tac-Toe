@@ -37,7 +37,7 @@ class menu(tk.Frame):
         label = tk.Label(self, text="Created by", bg="white").pack()
         label = tk.Label(self, text="Kyle Speke + Taylor Southorn", bg="white").pack()
         label = tk.Label(self, text="Harry Hudson + Ayyub Lindroos", bg="white").pack()
-        label = tk.Label(self, text="Faizan ahmed", bg="white").pack()
+        label = tk.Label(self, text="Faizan Ahmed", bg="white").pack()
 
         button1 = tk.Button(self, text="Player vs Computer", bg="white", command=lambda: controller.show_frame("singleplayer")).pack(fill="both", expand=True, side="left")
         button2 = tk.Button(self, text="Player vs Player", bg="white", command=lambda: controller.show_frame("multiplayer")).pack(fill="both", expand=True, side="right")
@@ -139,7 +139,7 @@ class multiplayer (tk.Frame):
         self.reset()
 #draw
     def draw(self):
-        tk.messagebox.showinfo("Well Done!!", "No One Won!")
+        tk.messagebox.showinfo("It is a tie", "Better Luck Next Time!")
         self.reset()
 #checks who wins
     def check(self):
