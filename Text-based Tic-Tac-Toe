@@ -26,8 +26,6 @@ def drawGrid():
         print('   %s  ║   %s  ║   %s  ' % (' ' + gridDict[7], gridDict[8] + ' ', gridDict[9] + ' '))
         print('       ║       ║       ' + '\n')
 
-print ('\n' + 'This is how the Tic-Tac-Toe grid looks like (starting from position 1 [top-left] all the way to position 9 [bottom-right]):')
-
 def gameAI(playerFirst):
     from random import randint
     
@@ -63,3 +61,26 @@ def gameAI(playerFirst):
                 break
 
 drawGrid()
+
+print ('\n' + 'This is how the Tic-Tac-Toe grid looks like (starting from position 1 [top-left] all the way to position 9 [bottom-right]):')
+
+while haveWonO == False or haveWonX == False:
+
+    if counter > 8:
+        break
+    else:
+        player1 = int(input("Player 1's turn. Please input where you want to place the 'O': "))
+        gridDict[player1] = 'O'
+        drawGrid()
+        if ((gridDict[1] == 'O' and gridDict[2] == 'O' and gridDict[3] == 'O')
+        or (gridDict[1] == 'O' and gridDict[4] == 'O' and gridDict[7] == 'O')
+        or (gridDict[1] == 'O' and gridDict[5] == 'O' and gridDict[9] == 'O')
+        or (gridDict[2] == 'O' and gridDict[5] == 'O' and gridDict[8] == 'O')
+        or (gridDict[3] == 'O' and gridDict[6] == 'O' and gridDict[9] == 'O')
+        or (gridDict[3] == 'O' and gridDict[5] == 'O' and gridDict[7] == 'O')
+        or (gridDict[4] == 'O' and gridDict[5] == 'O' and gridDict[6] == 'O')
+        or (gridDict[7] == 'O' and gridDict[8] == 'O' and gridDict[9] == 'O')):
+            haveWonO = True
+            break
+        counter += 1
+
