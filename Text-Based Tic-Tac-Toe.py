@@ -91,8 +91,25 @@ while haveWonO == False or haveWonX == False:
         
     if counter > 8:
         break
-    else: 
-        player2 = gameAI(True)
+    else:
+        print ("This is the computer's turn.")
+        print ('\n')
+        time.sleep(2)
+        sys.stdout.write('Thinking')
+        time.sleep(1)
+        sys.stdout.write('.')
+        time.sleep(1)
+        sys.stdout.write('.')
+        time.sleep(1)
+        sys.stdout.write('.')
+        time.sleep(1)
+        sys.stdout.write('.')
+        time.sleep(1)
+        sys.stdout.write('.')
+        
+        print ('\n')
+        
+        computer = gameAI(True)
         gridDict[player2] = 'X'
         drawGrid()
         if ((gridDict[1] == 'X' and gridDict[2] == 'X' and gridDict[3] == 'X')
@@ -107,4 +124,9 @@ while haveWonO == False or haveWonX == False:
             break
         counter += 1
 
-
+if haveWonO == True:
+    print ('Congratulations Player 1 won!')
+elif haveWonX == True:
+    print ('Congratulations Player 2 won!')
+elif counter == 9:
+    print('It is a tie!')
