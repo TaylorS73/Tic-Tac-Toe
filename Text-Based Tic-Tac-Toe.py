@@ -1,3 +1,6 @@
+import time, sys
+from random import randint
+
 pos1 = ' '
 pos2 = ' '
 pos3 = ' '
