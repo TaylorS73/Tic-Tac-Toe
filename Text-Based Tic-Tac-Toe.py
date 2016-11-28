@@ -1,5 +1,22 @@
 import time, sys
 from random import randint
+
+pos1 = ' '
+pos2 = ' '
+pos3 = ' '
+pos4 = ' '
+pos5 = ' '
+pos6 = ' '
+pos7 = ' '
+pos8 = ' '
+pos9 = ' '
+
+gridDict = {1:pos1, 2:pos2, 3:pos3, 4:pos4, 5:pos5, 6:pos6, 7:pos7, 8:pos8, 9:pos9}
+
+haveWonO = False
+haveWonX = False
+
+counter = 0
 def gameAI():
 
 #this will lay out the grid for the tic tac toe game      
@@ -30,24 +47,6 @@ def gameAI():
         else:
             gridDict[randInt] = 'O'
             break
-        
-pos1 = ' '
-pos2 = ' '
-pos3 = ' '
-pos4 = ' '
-pos5 = ' '
-pos6 = ' '
-pos7 = ' '
-pos8 = ' '
-pos9 = ' '
-
-gridDict = {1:pos1, 2:pos2, 3:pos3, 4:pos4, 5:pos5, 6:pos6, 7:pos7, 8:pos8, 9:pos9}
-
-haveWonO = False
-haveWonX = False
-
-counter = 0
-
 def drawGrid():
 
         print('\t')
