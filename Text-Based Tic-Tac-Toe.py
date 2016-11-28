@@ -74,17 +74,17 @@ while haveWonO == False or haveWonX == False:
     if counter > 8:
         break
     else:
-        player1 = int(input("Player 1's turn. Please input where you want to place the 'O': "))
-        gridDict[player1] = 'O'
+        player1 = int(input("Player 1's turn. Please input where you want to place the 'X': "))
+        gridDict[player1] = 'X'
         drawGrid()
-        if ((gridDict[1] == 'O' and gridDict[2] == 'O' and gridDict[3] == 'O')
-        or (gridDict[1] == 'O' and gridDict[4] == 'O' and gridDict[7] == 'O')
-        or (gridDict[1] == 'O' and gridDict[5] == 'O' and gridDict[9] == 'O')
-        or (gridDict[2] == 'O' and gridDict[5] == 'O' and gridDict[8] == 'O')
-        or (gridDict[3] == 'O' and gridDict[6] == 'O' and gridDict[9] == 'O')
-        or (gridDict[3] == 'O' and gridDict[5] == 'O' and gridDict[7] == 'O')
-        or (gridDict[4] == 'O' and gridDict[5] == 'O' and gridDict[6] == 'O')
-        or (gridDict[7] == 'O' and gridDict[8] == 'O' and gridDict[9] == 'O')):
+        if ((gridDict[1] == 'X' and gridDict[2] == 'X' and gridDict[3] == 'X')
+        or (gridDict[1] == 'X' and gridDict[4] == 'X' and gridDict[7] == 'X')
+        or (gridDict[1] == 'X' and gridDict[5] == 'X' and gridDict[9] == 'X')
+        or (gridDict[2] == 'X' and gridDict[5] == 'X' and gridDict[8] == 'X')
+        or (gridDict[3] == 'X' and gridDict[6] == 'X' and gridDict[9] == 'X')
+        or (gridDict[3] == 'X' and gridDict[5] == 'X' and gridDict[7] == 'X')
+        or (gridDict[4] == 'X' and gridDict[5] == 'X' and gridDict[6] == 'X')
+        or (gridDict[7] == 'X' and gridDict[8] == 'X' and gridDict[9] == 'X')):
             haveWonO = True
             break
         counter += 1
@@ -109,17 +109,17 @@ while haveWonO == False or haveWonX == False:
         
         print ('\n')
         
-        computer = gameAI(True)
-        gridDict[player2] = 'X'
+        computer = gameAI()
+        gridDict[computer] = 'O'
         drawGrid()
-        if ((gridDict[1] == 'X' and gridDict[2] == 'X' and gridDict[3] == 'X')
-        or (gridDict[1] == 'X' and gridDict[4] == 'X' and gridDict[7] == 'X')
-        or (gridDict[1] == 'X' and gridDict[5] == 'X' and gridDict[9] == 'X')
-        or (gridDict[2] == 'X' and gridDict[5] == 'X' and gridDict[8] == 'X')
-        or (gridDict[3] == 'X' and gridDict[6] == 'X' and gridDict[9] == 'X')
-        or (gridDict[3] == 'X' and gridDict[5] == 'X' and gridDict[7] == 'X')
-        or (gridDict[4] == 'X' and gridDict[5] == 'X' and gridDict[6] == 'X')
-        or (gridDict[7] == 'X' and gridDict[8] == 'X' and gridDict[9] == 'X')):
+        if ((gridDict[1] == 'O' and gridDict[2] == 'O' and gridDict[3] == 'O')
+        or (gridDict[1] == 'O' and gridDict[4] == 'O' and gridDict[7] == 'O')
+        or (gridDict[1] == 'O' and gridDict[5] == 'O' and gridDict[9] == 'O')
+        or (gridDict[2] == 'O' and gridDict[5] == 'O' and gridDict[8] == 'O')
+        or (gridDict[3] == 'O' and gridDict[6] == 'O' and gridDict[9] == 'O')
+        or (gridDict[3] == 'O' and gridDict[5] == 'O' and gridDict[7] == 'O')
+        or (gridDict[4] == 'O' and gridDict[5] == 'O' and gridDict[6] == 'O')
+        or (gridDict[7] == 'O' and gridDict[8] == 'O' and gridDict[9] == 'O')):
             haveWonX = True
             break
         counter += 1
