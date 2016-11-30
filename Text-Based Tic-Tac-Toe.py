@@ -82,7 +82,7 @@ while haveWonO == False or haveWonX == False:
         or (grid[3] == 'X' and grid[5] == 'X' and grid[7] == 'X')
         or (grid[4] == 'X' and grid[5] == 'X' and grid[6] == 'X')
         or (grid[7] == 'X' and grid[8] == 'X' and grid[9] == 'X')):
-            haveWonO = Truegrid
+            haveWonX = True
             break
         counter += 1
 
@@ -118,7 +118,7 @@ while haveWonO == False or haveWonX == False:
         or (grid[3] == 'O' and grid[5] == 'O' and grid[7] == 'O')
         or (grid[4] == 'O' and grid[5] == 'O' and grid[6] == 'O')
         or (grid[7] == 'O' and grid[8] == 'O' and grid[9] == 'O')):
-            haveWonX = True
+            haveWonO = True
             break
         counter += 1
 
