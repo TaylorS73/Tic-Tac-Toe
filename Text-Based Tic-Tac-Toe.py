@@ -19,7 +19,7 @@ haveWonX = False
 counter = 0 # the counter counts how many moves there have been. If there has been 9 moves it has to be a tie.
 def gameAI():
 
-'''this checks where Ai moves'''   
+    '''this checks where Ai moves'''   
     if ((grid[2] == 'X' and grid[3] == 'X') or (grid[4] == 'X' and grid[7] == 'X') or (grid[5] == 'X' and grid[9] == 'X')) and grid[1] != 'O':
         return 1
     elif ((grid[1] == 'X' and grid[3] == 'X') or (grid[5] == 'X' and grid[8] == 'X')) and grid[2] != 'O':
@@ -127,4 +127,4 @@ if haveWonO == True:
 elif haveWonX == True:
     print ('X has won!')
 elif counter == 9:
-    print('It's a tie!')
+    print('It\'s a tie!')
