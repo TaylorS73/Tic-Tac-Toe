@@ -12,7 +12,6 @@ counter = 0 # the counter counts how many moves there have been. If there has be
 choice = 'Y'
 
 def gameAI():
-
     '''this checks where Ai moves'''   
     if ((grid[2] == 'X' and grid[3] == 'X') or (grid[4] == 'X' and grid[7] == 'X') or (grid[5] == 'X' and grid[9] == 'X')) and grid[1] != 'O':
         return 1
@@ -41,6 +40,7 @@ def gameAI():
         else:
             grid[randInt] = 'O'
             break
+
 def drawGrid():
 
         print('\t')
@@ -81,7 +81,6 @@ while choice[0] != 'N':
                 haveWonX = True
                 break
             counter += 1
-
 
         if counter > 8:
             break
@@ -124,7 +123,6 @@ while choice[0] != 'N':
         print ('X has won!')
     elif counter == 9:
         print('It\'s a tie!')
-
 
     choice = input('Try Again? (Y/N): ').upper()
 
