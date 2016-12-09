@@ -1,5 +1,5 @@
 #Tic-Tac-Toe
-*Made by Ayyub Lindroos, Harry Hudson, Taylor Southorn & Kyle Speke*
+*Made by Ayyub Lindroos, Harry Hudson, Taylor Southorn, Kyle Speke & Faizan Ahmed 
 
 Main Template - TICTACTOE (single gui game)
 
