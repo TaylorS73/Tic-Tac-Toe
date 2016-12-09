@@ -44,6 +44,7 @@ class menu(tk.Frame):
         button5 = tk.Button(self, text="Close", bg="black", fg="white", command=lambda: controller.show_frame("close")).pack(fill="both", expand=True)
 
     def singleplayer(self):
+        '''runs text based singleplayer client(with ai)'''
         if self.menuCount1 == 0:
             self.menuCount1 = 1
             import singleplayer
@@ -52,11 +53,12 @@ class menu(tk.Frame):
             importlib.reload(module=singleplayer)
 
     def Online_Multiplayer(self):
+        '''runs text based online multiplayer client'''
         if self.menuCount2 == 0:
             self.menuCount2 = 1
-            import Game_Client, Chat_Client, Message_Reciever
+            import Game_Client
         elif self.menuCount2 == 1:
-            import Game_Client, Chat_Client, Message_Reciever
+            import Game_Client
             importlib.reload(module=Game_Client)
 
 class roll_credits(tk.Frame):
@@ -78,8 +80,6 @@ class roll_credits(tk.Frame):
 
 #player vs player
 class multiplayer (tk.Frame):
-
-
 #creats a frame and initialize it.
     def __init__(self, parent, controller):
         frame=tk.Frame.__init__(self, parent, bg="black")
